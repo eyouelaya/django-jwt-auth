@@ -12,6 +12,19 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import os
+from dotenv import load_dotenv
+
+# Setting up environment variables
+load_dotenv()
+
+JWT_SECRET = os.environ.get('JWT_SECRET','secret')
+SQL_DATABASE = os.environ.get('SQL_DATABASE','db')
+SQL_USER = os.environ.get('SQL_USER','root')
+SQL_PASSWORD = os.environ.get('SQL_PASSWORD','root')
+SQL_HOST = os.environ.get('SQL_HOST','127.0.0.1')
+SQL_PORT = os.environ.get('SQL_PORT','3306')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -80,11 +93,11 @@ WSGI_APPLICATION = 'auth.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangoauth',
-        'USER': 'root',
-        'PASSWORD': 'root12345',
-        'HOST': '127.0.0.1',
-        'PORT': "3306",
+        'NAME': SQL_DATABASE,
+        'USER': SQL_USER,
+        'PASSWORD': SQL_PASSWORD,
+        'HOST': SQL_HOST,
+        'PORT': SQL_PORT,
     }
 }
 
